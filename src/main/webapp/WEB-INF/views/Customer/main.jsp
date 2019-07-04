@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,7 +19,10 @@
 </head>
 
 <%@include file=".././menu/headC.jsp"%>
+<script>
+	var i = 1;
 
+</script>
     
 	<!-- 여기부터가 페이지 내용관리하는 부분 여기 밑에다 정리 부탁드립니다 -->
     <div id="page-wrapper">
@@ -32,14 +39,33 @@
         <!-- 여기에서 작업하기 -->
         <div class="col-sm-7 col-md-7 well" id="cctvcontent">
                 	<!-- 여기는 제목을 담다하는 부분 -->
+                	
                     <h1>동작중인 CCTV</h1>
-                    <img alt="CCtv영상" src="http://221.155.24.64:8090/?action=stream" id="cctv" class="col-sm-12 col-md-12 well">
+                    <img alt="cctv" id="cctv" class="col-sm-12 col-md-12 well">
                     <ul class="pagination">
-					  <li><a href="#">1</a></li>
-					  <li><a href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li><a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
+                    	<c:set var="check" value="1" />
+                    		<script>
+                    		
+                    		console.log("시작됨");
+                    		var data = new Array();
+                    		$(document).ready(function () 
+                    				{
+                    				    $('#cctv').attr("src","http://${first.r_ip}:8090/?action=stream");
+                    				});
+                    			<c:forEach items="${data}" var="dota" >
+                    			console.log("제발");
+                    				data.push("${dota.r_ip}");
+	                    			document.write("<li><button class=\""+i+"\" onclick=\"changeip\(this\)\">"+ i +"</button></li>");
+	                    			i++;
+                    			</c:forEach>
+                    			function changeip(button) {
+                    				$('#cctv').removeAttr('src')
+                    					var id = button.className;
+                    				 	$('#cctv').attr("src","http://"+data[id-1]+":8090/?action=stream");
+        
+                    				}
+                    		</script>
+					  	
 					</ul>
         </div>
         <div class="col-sm-5 col-md-5 well" id="cctvcontent">
@@ -52,7 +78,7 @@
         <div class="col-sm-12 col-md-12 well" id="chartline">
                 	<!-- 차트 부분 -->
                 	<div class="chart-container" style="position: relative; height:40vh; width:80vw">
-	                	<script src="js/chart/Chart.js"></script>
+	                	
 						<canvas id="myChart" width="500" height="300"></canvas>
 						<script>
 						var ctx = document.getElementById("myChart");

@@ -19,6 +19,7 @@ public interface ServiceMapper {
 	@Select("select * from service where c_id=#{c_id} and r_ip is not null")
 	public ArrayList<ServiceDTO> conck(ServiceDTO so);
 	
+	
 	@Select("select * from service where r_ip is null")
 	public ArrayList<ServiceDTO> serviceok();
 	
