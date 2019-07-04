@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tip.domain.ServiceDTO;
@@ -41,9 +42,14 @@ public class AdministorController {
 	@RequestMapping("/cservice")
 	public String page(Model md) {
 		ArrayList<ServiceDTO> ss = ms.ck();
-		
 		md.addAttribute("data", ss);
-		return "Admin/allsystem";
+		return "Admin/cservice";
+		
+	}
+	@PostMapping("/cservice.action")
+	public String update(ServiceDTO vo,Model md) {
+		ms.updateService(vo);
+		return "redirect:cservice";
 		
 	}
 }
