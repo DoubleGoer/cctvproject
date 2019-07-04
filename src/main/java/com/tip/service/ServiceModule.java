@@ -42,4 +42,11 @@ public class ServiceModule implements Service {
 		return "ok";
 	}
 
+	@Override
+	public ArrayList<ServiceDTO> ck() {
+		// TODO Auto-generated method stub
+		ArrayList<ServiceDTO> data = mp.serviceok();
+		return data;
+	}
+
 }

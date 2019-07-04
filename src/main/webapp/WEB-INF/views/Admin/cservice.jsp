@@ -40,7 +40,16 @@
 				</tr>
 				</thead>
 				<tbody>
-				
+					<c:forEach var="result" items="${data}">
+	                    <tr>
+		                    <form>
+		                        <td><c:out value="${result.c_id}"/></td>
+		                        <td></td>
+		                        <td><c:out value="${result.rc_sdate}"/></td>
+		                        <td><c:out value="${result.rc_add}"></c:out></td>
+		                    </form>
+	                    </tr>
+                	</c:forEach>
 				</tbody>
 				</table>
         <!-- /.container-fluid -->
