@@ -7,6 +7,7 @@ public class DayDTO {
 	private String rc_year;
 	private String rc_month;
 	private String rc_day;
+	private String dd;
 	public int getS_no() {
 		return s_no;
 	}
