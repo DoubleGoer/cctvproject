@@ -1,7 +1,12 @@
 package com.tip.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.tip.domain.ServiceDTO;
 
 
 @Controller
@@ -29,9 +34,10 @@ public class AdministorController {
 		
 	}
 	@RequestMapping("/cservice")
-	public String page() {
+	public String page(Model md) {
+		ArrayList<ServiceDTO> ss = new ArrayList<ServiceDTO>();
 		
-		
+		md.addAttribute("data", ss);	
 		return "Admin/allsystem";
 		
 	}

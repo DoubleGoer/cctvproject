@@ -29,10 +29,22 @@
         </div>
         <!-- 여기에서 작업하기 -->
         <div class="col-sm-12 col-md-12 well" id="cctvcontent">
-	
-        
+				
+				<table class="table">
+				<thead>
+				<tr>
+					<td>고객 아이디</td>
+					<td>아이피등록</td>
+					<td>서비스 신청일</td>
+					<td>설치 주소</td>
+				</tr>
+				</thead>
+				<tbody>
+				
+				</tbody>
+				</table>
         <!-- /.container-fluid -->
-    </div>
+    	</div>
     <!-- /#page-wrapper -->
 </body>
 </html>
