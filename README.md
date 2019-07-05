@@ -5,6 +5,9 @@
 <p>2. 첫번째 페이지에있는 sql 쿼리문을 통하여 테이블 등록</p>
 <p>3. insert into customer (C_ID,C_PASS,C_NAME,C_EMAIL,C_ADRESS,A_a) values('admin','admin','관리자','khs4637@naver.com','서울',1)</p>
 <p> (위의 쿼리문을 통하여 Admin 계정 생성) </p>
+<p> 4. mysql 커넥터는 최신버젼이 아닌 5.x 번때 를 사용 할것 </p>
+<p>(만약 8.x때를 꼭사용해야 하는 이유가 있으면 root-context에 mysql 주소부분에 서비스타임을 일치시키는 옵션을 추가해야됨) </p>
+
 <h2>진행 상황</h2>
 <h3>07.05<h3>
  <p>1.메인 페이지에 3번쨰 섹터에서 Modal창을 통하여 서비스 신청</p>
