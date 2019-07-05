@@ -45,7 +45,6 @@
                     <ul class="pagination">
                     	<c:set var="check" value="1" />
                     		<script>
-                    		
                     		console.log("시작됨");
                     		var data = new Array();
                     		$(document).ready(function () 

@@ -131,6 +131,7 @@
 						<div class="col-sm-5 col-md-5 well">
 				        	<div class="chart-container" style="position: relative; height:55vh; width:40vw">
 				        		<button type="button" onclick="location.href='chart?data=month';">주간 그래프</button>
+				        		
 				        	</div>
 				        </div>
 						<%} %>
