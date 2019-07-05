@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,16 +42,21 @@
 					<td>아이피등록</td>
 					<td>서비스 신청일</td>
 					<td>설치 주소</td>
+					<td>서비스 승인</td>
 				</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="result" items="${data}">
 	                    <tr>
-		                    <form>
+		                    
 		                        <td><c:out value="${result.c_id}"/></td>
-		                        <td></td>
+		                        <form action="cservice.action" method="post">
+			                        <td><input type="text" name="r_ip"></td>
+			                    <input type="hidden" name="c_id" value="${result.c_id}">
+			                    <input type="hidden" name="rc_no" value="${result.rc_no }">
 		                        <td><c:out value="${result.rc_sdate}"/></td>
-		                        <td><c:out value="${result.rc_add}"></c:out></td>
+		                        <td><c:out value="${result.rc_add}"/></td>
+		                        <td><input type="submit" value="승인"></td>
 		                    </form>
 	                    </tr>
                 	</c:forEach>

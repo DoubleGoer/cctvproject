@@ -49,4 +49,11 @@ public class ServiceModule implements Service {
 		return data;
 	}
 
+	@Override
+	public ArrayList<ServiceDTO> returnip(ServiceDTO vo) {
+		// TODO Auto-generated method stub
+		ArrayList<ServiceDTO> ck = mp.conck(vo);
+		return ck;
+	}
+
 }

@@ -13,4 +13,6 @@ public interface Service {
 	public ArrayList<ServiceDTO> ck();
 	
 	public String ckservice(ServiceDTO vo);
+	
+	public ArrayList<ServiceDTO> returnip(ServiceDTO vo);
 }
