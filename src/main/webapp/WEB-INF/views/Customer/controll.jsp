@@ -35,8 +35,10 @@
  	height: 50px;
  	width: 60px;
  }
- img {
+.btnimg img{
  	display:block;
+ 	height: 50px;
+ 	width: 50px;
  }
 
 </style>
@@ -65,10 +67,10 @@
 	                </div>
 	                <div class="cap col-sm-12 col-md-12" style="text-align: center;align-content: center;">
 							<div class="col-sm-12 col-md-12 well" style="margin: 10px;">
-					        	<button class="up" onclick="tcp(this)">UP</button>
-					        	<button class="Right" onclick="tcp(this)">Right</button>
-					        	<button class="Left" onclick="tcp(this)">Left</button>
-					        	<button class="Down" onclick="tcp(this)">Down</button>
+					        	<button class="u" onclick="tcp(this)">UP</button>
+					        	<button class="r" onclick="tcp(this)">Right</button>
+					        	<button class="l" onclick="tcp(this)">Left</button>
+					        	<button class="d" onclick="tcp(this)">Down</button>
 					        </div>
 						</div>
 					<div>
@@ -110,11 +112,8 @@
 			                    			        data: zip,
 			                    			        success:function(data){
 			                    			            alert("완료!");
-			                    			            
-			                    			            
 			                    			        },
 			                    			        error:function(jqXHR, textStatus, errorThrown){
-			                    			            
 			                    			            self.close();
 			                    			        }
 			                    			    });

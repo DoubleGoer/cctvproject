@@ -2,10 +2,14 @@ package com.tip.controller;
 
 import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.logging.SimpleFormatter;
 
 import javax.security.auth.spi.LoginModule;
 import javax.servlet.http.HttpServletRequest;
@@ -47,7 +51,10 @@ public class MainController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
-		
+		Date today = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("dd");
+		System.out.println(date.format(today));
+
 		
 		
 		

@@ -31,8 +31,9 @@
             <!-- /.row -->
             <div class="col-sm-7 col-md-7 well" id="chartline">
                 	<!-- 차트 부분 -->
+                	<!-- 일별 차트 부분 -->
                 	<div class="chart-container" style="position: relative; height:55vh; width:40vw">
-	                	<script src="js/chart/Chart.js"></script>
+	                	
 						<canvas id="myChart"  style="width: auto !important; height: 300px;"></canvas>
 						<%
 						
@@ -44,9 +45,9 @@
 						var labels = new Array();
 						var data = new Array();
 
-						<c:forEach items="${resultList}" var="result" >
-							labels.push("${result.month}");
-							data.push("${result.data}");
+						<c:forEach items="${chartdata}" var="result" >
+							labels.push("${result.rc_day}");
+							data.push("${result.rc_count}");
 						</c:forEach>
 						console.log(labels);
 						var ctx = document.getElementById("myChart");
@@ -63,7 +64,6 @@
 						                'rgba(255, 206, 86, 0.2)',
 						                'rgba(75, 192, 192, 0.2)',
 						                'rgba(153, 102, 255, 0.2)'
-						                
 						            ],
 						            borderColor: [
 						                'rgba(255,99,132,1)',
@@ -83,8 +83,7 @@
 						                display: true,
 						                ticks: {
 						                    beginAtZero: true,
-						                    max: 100,
-						                    min: 0
+						                    
 						                }
 						            }]
 						        },
@@ -95,13 +94,93 @@
 						
 						</div>
         </div>
+        
 						<div class="col-sm-5 col-md-5 well">
 				        	<div class="chart-container" style="position: relative; height:55vh; width:40vw">
 				        		<button type="button" onclick="location.href='chart?data=day';">당일 그래프</button>
 				        	</div>
+				        	<div class="caldata">
+					        <% 
+					        	int i = 1;
+					        %>
+					        <form action="chart" method="get">
+					        		<input type="hidden" name="data" value="month">
+					        		<input type="hidden" name="c_id" value="<%= (String) session.getAttribute("userid")%>">
+						        	 <select id="rc_no" name="rc_no" onchange="device(this.value)">
+									<option selected="selected" value="--">------</option> 
+											
+									  </select>
+									  <select id="rc_year" name="rc_year"  onchange="year(this.value)">
+									  <option selected="selected" value="--">------</option> 
+														  
+									  </select>
+									  <select id="rc_month" name="rc_month"  onchange="month(this.value)">
+									  
+									  	<option selected="selected" value="--">------</option>
+									  
+									  </select>
+									  <input type="submit" value="검색">
+								  </form>
+					        </div>
+					        
+				        </div>
+				        <script>
+				        window.onload = function(){
+				        	var i = 1;
+				        	var pastck = null;
+				        	 <c:forEach items="${searchdata}" var="result" >
+				        	 	if(pastck==null || pastck != ${result.rc_no}){
+				        	 		$('#rc_no').append("<option value=\"${result.rc_no}\">"+ i+"</option>");
+				        	 	}
+				        	 	pastck=${result.rc_no};
+					     	</c:forEach>
+				        }
+				        
+				        function device(str) {
+				        	var value = $('#rc_no').val();
+				     
+				        	document.getElementById('rc_year').innerHTML="<option  value=\"--\">------</option>";
+				        	document.getElementById('rc_month').innerHTML="<option  value=\"--\">------</option>";
+				        	
+				        	var pastck = null;
+				        	<c:forEach items="${searchdata}" var="result" >
+				        	 	if(value == ${result.rc_no} && (pastck == null || pastck != ${result.rc_year})){	
+				        	 		$('#rc_year').append("<option  value=\"${result.rc_year}\">${result.rc_year}</option>");
+				        	 	}
+				        	 	pastck = ${result.rc_year}
+				     		</c:forEach>
+
+				        }
+				        function year(str) {
+				        	
+				        	document.getElementById('rc_month').innerHTML="<option  value=\"--\">------</option>";
+				        	
+				        	var value = $('#rc_no').val();
+				        	var value2 = $('#rc_year').val();
+				        	var pastck = null;
+				        	<c:forEach items="${searchdata}" var="result" >
+				        	 	if((value == ${result.rc_no} && value2 == ${result.rc_year}) && (pastck == null || pastck != ${result.rc_month})){
+				        	 		$('#rc_month').append("<option  value=\"${result.rc_month}\">${result.rc_month}</option>");
+				        	 	}
+				        	 	pastck = ${result.rc_month}
+				     		</c:forEach>
+
+				        }
+				        
+						
+				       
+				        </script>
 				        </div>
 						<%}else if(data.equals("day")){ %>
+						<!-- 데일리 그래프 -->
 						<script type="text/javascript">
+						var labels = new Array();
+						var data = new Array();
+						<c:forEach items="${chartdata}" var="result" >
+							labels.push("${result.rc_hour}");
+							data.push("${result.rc_count}");
+						</c:forEach>
+						
 						var ctx = document.getElementById('myChart').getContext('2d');
 						var chart = new Chart(ctx, {
 						    // The type of chart we want to create
@@ -109,11 +188,11 @@
 
 						    // The data for our dataset
 						    data: {
-						        labels: ['12시', '1시', '2시', '3시', '4시', '5시', '6시'],
+						        labels: labels,
 						        datasets: [{
 						            label: '시간대별 손님 수',
 						            borderColor: 'rgb(255, 99, 132)',
-						            data: [0, 10, 5, 2, 20, 30, 45]
+						            data: data
 						        }]
 						    },
 
@@ -130,10 +209,98 @@
 						
 						<div class="col-sm-5 col-md-5 well">
 				        	<div class="chart-container" style="position: relative; height:55vh; width:40vw">
-				        		<button type="button" onclick="location.href='chart?data=month';">주간 그래프</button>
-				        		
+				        		<button type="button" onclick="location.href='chart?data=month';">일별 그래프로 전환</button>
 				        	</div>
+				        	
+					        <div class="caldata">
+					        <% 
+					        	int i = 1;
+					        %>
+					        <form action="chart" method="get">
+					        		<input type="hidden" name="data" value="day">
+					        		<input type="hidden" name="c_id" value="<%= (String) session.getAttribute("userid")%>">
+						        	 <select id="rc_no" name="rc_no" onchange="device(this.value)">
+									<option selected="selected" value="--">------</option> 
+											
+									  </select>
+									  <select id="rc_year" name="rc_year"  onchange="year(this.value)">
+									  <option selected="selected" value="--">------</option> 
+														  
+									  </select>
+									  <select id="rc_month" name="rc_month"  onchange="month(this.value)">
+									  <option selected="selected" value="--">------</option> 
+											
+											  
+									  </select>
+									  <select id="rc_day" name="rc_day">
+									  <option selected="selected" value="--">------</option> 
+											
+									  </select>
+									  <input type="submit" value="검색">
+								  </form>
+					        </div>
+					        
 				        </div>
+				        <script>
+				        window.onload = function(){
+				        	var i = 1;
+				        	var pastck = null;
+				        	 <c:forEach items="${searchdata}" var="result" >
+				        	 	if(pastck==null || pastck != ${result.rc_no}){
+				        	 		$('#rc_no').append("<option value=\"${result.rc_no}\">"+ i+"</option>");
+				        	 	}
+				        	 	pastck=${result.rc_no};
+					     	</c:forEach>
+				        }
+				        
+				        function device(str) {
+				        	var value = $('#rc_no').val();
+				     
+				        	document.getElementById('rc_year').innerHTML="<option  value=\"--\">------</option>";
+				        	document.getElementById('rc_month').innerHTML="<option  value=\"--\">------</option>";
+				        	document.getElementById('rc_day').innerHTML="<option  value=\"--\">------</option>";
+				        	var pastck = null;
+				        	<c:forEach items="${searchdata}" var="result" >
+				        	 	if(value == ${result.rc_no} && (pastck == null || pastck != ${result.rc_year})){
+				        	 		$('#rc_year').append("<option  value=\"${result.rc_year}\">${result.rc_year}</option>");
+				        	 	}
+				        	 	pastck = ${result.rc_year}
+				     		</c:forEach>
+
+				        }
+				        function year(str) {
+				        	
+				        	document.getElementById('rc_month').innerHTML="<option  value=\"--\">------</option>";
+				        	document.getElementById('rc_day').innerHTML="<option  value=\"--\">------</option>";
+				        	var value = $('#rc_no').val();
+				        	var value2 = $('#rc_year').val();
+				        	var pastck = null;
+				        	<c:forEach items="${searchdata}" var="result" >
+				        	 	if((value == ${result.rc_no} && value2 == ${result.rc_year}) && (pastck == null || pastck != ${result.rc_month})){
+				        	 		$('#rc_month').append("<option  value=\"${result.rc_month}\">${result.rc_month}</option>");
+				        	 	}
+				        	 	pastck = ${result.rc_month}
+				     		</c:forEach>
+
+				        }
+				        
+						function month(str) {
+				        	
+				        	document.getElementById('rc_day').innerHTML="<option  value=\"--\">------</option>";
+				        	var value = $('#rc_no').val();
+				        	var value2 = $('#rc_year').val();
+				        	var value3 = $('#rc_month').val();
+				        	var pastck = null;
+				        	<c:forEach items="${searchdata}" var="result" >
+				        	 	if(((value == ${result.rc_no} && value2 == ${result.rc_year})&&value3 == ${result.rc_month}) && (pastck == null || pastck != ${result.rc_day})){
+				        	 		$('#rc_day').append("<option  value=\"${result.rc_day}\">${result.rc_day}</option>");
+				        	 	}
+				        	 	pastck = ${result.rc_day}
+				     		</c:forEach>
+
+				        }
+				       
+				        </script>
 						<%} %>
 	                    <!-- 차트를 설정하는 구문입니다 건드리면 안도됴 -->
 	          <!-- 차트를 설정하는 구문입니다 건드리면 안도됴 -->

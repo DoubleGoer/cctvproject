@@ -46,4 +46,10 @@ public class ServiceDTO {
 	public void setRc_con(Date rc_con) {
 		this.rc_con = rc_con;
 	}
+	@Override
+	public String toString() {
+		return "ServiceDTO [rc_no=" + rc_no + ", r_ip=" + r_ip + ", c_id=" + c_id + ", rc_sdate=" + rc_sdate
+				+ ", rc_con=" + rc_con + ", rc_add=" + rc_add + "]";
+	}
+	
 }

@@ -33,7 +33,13 @@
             <!-- /.row -->
         </div>
         <!-- 여기에서 작업하기 -->
+        
+        
         <div class="col-sm-12 col-md-12 well" id="cctvcontent">
+        	<button>동선감지 사진</button> <button>감지 사진</button>
+        </div>
+        <div class="col-sm-12 col-md-12 well" id="cctvcontent">
+        
 	        <div class="grid-container">
 	        <c:forEach items="${resultList}" var="result" >
 					<article id="3685" class="location-listing">
@@ -45,7 +51,7 @@
 	                                    <!-- src에 이미지 어레이리스트 값 주면 됨-->
 			        </div>
 			        <b><p><c:out value="${result.rc_cdate}"/></p></b>  
-			      </article>			
+			      </article>
 			</c:forEach>
 			</div>
         </div>
