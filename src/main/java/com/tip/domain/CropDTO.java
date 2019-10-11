@@ -1,13 +1,12 @@
 package com.tip.domain;
 
-import java.util.Date;
-
-public class CaptureDTO {
+public class CropDTO {
 	private String s_no;
 	private String rc_no;
 	private String rc_cdate;
 	private String rc_url;
 	private String c_id;
+	
 	public String getC_id() {
 		return c_id;
 	}
@@ -15,7 +14,6 @@ public class CaptureDTO {
 		this.c_id = c_id;
 	}
 	public String getS_no() {
-		
 		return s_no;
 	}
 	public void setS_no(String s_no) {
@@ -39,10 +37,4 @@ public class CaptureDTO {
 	public void setRc_url(String rc_url) {
 		this.rc_url = rc_url;
 	}
-	@Override
-	public String toString() {
-		return "CaptureDTO [s_no=" + s_no + ", rc_no=" + rc_no + ", rc_cdate=" + rc_cdate + ", rc_url=" + rc_url + "]";
-	}
-	
-	
 }

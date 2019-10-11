@@ -56,7 +56,7 @@
 						    data: {
 						        labels: labels,
 						        datasets: [{
-						            label: '달별 매장 총인원수',
+						            label: '일별 매장 총인원수',
 						            data: data,
 						            backgroundColor: [
 						                'rgba(255, 99, 132, 0.2)',

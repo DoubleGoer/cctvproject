@@ -25,12 +25,12 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/kang/Desktop/졸작/mysql-connector-java-5.1.47.jar">
+	<classpathentry kind="lib" path="D:/자료모움/졸작&amp;현장실습/졸작/mysql-connector-java-5.1.47.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/kang/Desktop/졸작/mysql-connector-java-5.1.47-bin.jar">
+	<classpathentry kind="lib" path="D:/자료모움/졸작&amp;현장실습/졸작/mysql-connector-java-5.1.47-bin.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

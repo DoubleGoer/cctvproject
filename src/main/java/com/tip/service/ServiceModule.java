@@ -70,7 +70,6 @@ public class ServiceModule implements Service {
 	public ArrayList<HourDTO> returndata(SearchDataDTO sd) {
 		// TODO Auto-generated method stub
 		ArrayList<HourDTO> data = mp.chartdata(sd);
-		
 		return data;
 	}
 

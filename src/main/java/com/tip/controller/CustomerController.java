@@ -25,7 +25,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tip.domain.CaptureDTO;
+import com.tip.domain.CropDTO;
 import com.tip.domain.DayDTO;
+import com.tip.domain.HeatMapDTO;
 import com.tip.domain.HourDTO;
 import com.tip.domain.MonthDTO;
 import com.tip.domain.SearchDataDTO;
@@ -100,9 +102,22 @@ public class CustomerController {
 	
 	
 	@RequestMapping("/capture")
-	public void capture(Model md) {
-		ArrayList<CaptureDTO> cd = cs.getcpature();
-		md.addAttribute("resultList", cd);
+	public void capture(Model md,CaptureDTO ca,HeatMapDTO ha,CropDTO ct,HttpSession se) {
+		
+		ca.setC_id((String)se.getAttribute("userid"));
+		
+		ha.setC_id((String)se.getAttribute("userid"));
+		
+		ct.setC_id((String)se.getAttribute("userid"));
+		
+		ArrayList<CaptureDTO> cap = cs.getcpature(ca);
+		ArrayList<HeatMapDTO> heat = cs.getheatmap(ha);
+		ArrayList<CropDTO> crop = cs.getcrop(ct);
+		
+		
+		md.addAttribute("captureList", cap);
+		md.addAttribute("heaatMapList", heat);
+		md.addAttribute("croplist", crop);
 	}
 	
 	@RequestMapping("/chartand")
@@ -144,8 +159,12 @@ public class CustomerController {
 //		return arr;
 //	}
 	
-	/* 이름
+	/* 이름 : controlldevice
 	 * 역할 : 디바이스 제어를 위한 ajax 데이터 통신 수단
+	 * 변수 : data : 방향 지시 관련  ip : 컨트롤할 기기의 ip 주소값
+	 * 내용 : Ajax 비동기 통신으로 데이터를 우선적으로 전달을 받은후에 해당 url은 직접적인 파일을
+	 * 		지시하는것이 아니라 이 컨트롤러를 사용해서 지시한 것이고 해당하는 데이터를 받은후
+	 * 	 	자바의 소켓통신을 이용하여 우컨트할 객체 전달하게 됩니다.
 	 */
 	@PostMapping("/url.do")
 	public void controlldevice(String data,String ip) throws Exception{
