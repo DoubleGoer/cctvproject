@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +34,30 @@
         </div>
         <!-- 여기에서 작업하기 -->
         <div class="col-sm-12 col-md-12 well" id="cctvcontent">
-	
+							<table class="table">
+				<thead>
+				<tr>
+					<td>고객 아이디</td>
+					<td>서비스 신청일</td>
+					<td>설치 주소</td>
+					<td>카메라 접속</td>
+				</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="result" items="${data}">
+	                    <tr>
+		                        <td><c:out value="${result.c_id}"/></td>
+		                        <form action="controll" method="post">
+				                    <input type="hidden" name="c_id" value="${result.c_id}">
+				                    <input type="hidden" name="rc_no" value="${result.rc_no}">
+			                        <td><c:out value="${result.rc_sdate}"/></td>
+			                        <td><c:out value="${result.rc_add}"/></td>
+		                        <td><input type="submit" value="CCTV연결"></td>
+		                    </form>
+	                    </tr>
+                	</c:forEach>
+				</tbody>
+				</table>
         
         <!-- /.container-fluid -->
     </div>

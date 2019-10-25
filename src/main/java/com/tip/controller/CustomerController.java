@@ -173,18 +173,14 @@ public class CustomerController {
 		try{
             String ip1 = ip; //클라이언트의 임시 접속 주소
             int port = 9000; //접속할 서버 포트
-            Socket socket = new Socket(ip1, port); //클라이언트의 소켓 생성
-            
+            Socket socket = new Socket(ip1, port); //클라이언트의 소켓 생성 
             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
             OutputStream out = socket.getOutputStream(); //서버의 소켓으로부터 출력을 받음
             InputStream in = socket.getInputStream(); //서버의 소켓으로부터 입력을 받음
-             
             PrintWriter pw = new PrintWriter(new OutputStreamWriter(out)); //출력 스트림을 변환
             BufferedReader br = new BufferedReader(new InputStreamReader(in)); //입력 스트림을 변환
-             
-            pw.println("r");
-            
-            pw.println("q");
+            pw.println(data);
+            pw.flush();
             pw.close();
             br.close();
             socket.close();
@@ -193,5 +189,39 @@ public class CustomerController {
         }
 
 	}
+	
+	@PostMapping("/detect.do")
+	public void detectdevice(String data,String ip,String num) throws Exception{
+		System.out.println(data);
+		System.out.println(ip);
+		ServiceDTO ss = new ServiceDTO();
+		ss.setRc_no(Integer.parseInt(num));
+		if(data.equals("t")) {
+			sc.detecton(ss);
+		}else if(data.equals("f")){
+			sc.detectoff(ss);
+		}
+//		try{
+//            String ip1 = ip; //클라이언트의 임시 접속 주소
+//            int port = 9000; //접속할 서버 포트
+//            Socket socket = new Socket(ip1, port); //클라이언트의 소켓 생성 
+//            OutputStream out = socket.getOutputStream(); //서버의 소켓으로부터 출력을 받음
+//            InputStream in = socket.getInputStream(); //서버의 소켓으로부터 입력을 받음
+//            PrintWriter pw = new PrintWriter(new OutputStreamWriter(out)); //출력 스트림을 변환
+//            BufferedReader br = new BufferedReader(new InputStreamReader(in)); //입력 스트림을 변환
+//            pw.println(data);
+//            pw.println("q");
+//            pw.close();
+//            br.close();
+//            socket.close();
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+
+	}
+	
+	
+	
+	
 
 }

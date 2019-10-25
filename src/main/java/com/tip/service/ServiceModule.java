@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.tip.domain.CustomerDTO;
 import com.tip.domain.DayDTO;
 import com.tip.domain.HourDTO;
 import com.tip.domain.SearchDataDTO;
@@ -28,6 +29,8 @@ public class ServiceModule implements Service {
 	public void updateService(ServiceDTO vo) {
 		// TODO Auto-generated method stub
 		mp.inip(vo);
+		mp.cctvctl(vo);
+		
 	}
 
 	@Override
@@ -45,12 +48,7 @@ public class ServiceModule implements Service {
 		return "ok";
 	}
 
-	@Override
-	public ArrayList<ServiceDTO> ck() {
-		// TODO Auto-generated method stub
-		ArrayList<ServiceDTO> data = mp.serviceok();
-		return data;
-	}
+
 
 	@Override
 	public ArrayList<ServiceDTO> returnip(ServiceDTO vo) {
@@ -87,6 +85,68 @@ public class ServiceModule implements Service {
 		return data;
 	}
 
+	@Override
+	public ArrayList<ServiceDTO> clist() {
+		// TODO Auto-generated method stub
+		ArrayList<ServiceDTO> data = mp.serivecelist();
+		return data;
+	}
+	@Override
+	public ArrayList<ServiceDTO> ck() {
+		// TODO Auto-generated method stub
+		ArrayList<ServiceDTO> data = mp.serviceok();
+		return data;
+	}
 	
+	public ArrayList<CustomerDTO> customlist(){
+		ArrayList<CustomerDTO> data = mp.customerlist();
+		return data;
+	}
+
+	@Override
+	public int countc() {
+		// TODO Auto-generated method stub
+		int count = mp.countall();
+		
+		return count;
+	}
+	@Override
+	public int counts() {
+		// TODO Auto-generated method stub
+		int count = mp.counts();
+		
+		return count;
+	}
+
+	@Override
+	public void delcutom(ServiceDTO vo) {
+		// TODO Auto-generated method stub
+		mp.delcustom(vo);
+		
+	}
+
+	@Override
+	public void adminin(ServiceDTO vo) {
+		// TODO Auto-generated method stub
+		mp.adminin(vo);
+	}
+
+	@Override
+	public void adminout(ServiceDTO vo) {
+		// TODO Auto-generated method stub
+		mp.adminout(vo);
+	}
+
+	@Override
+	public void detecton(ServiceDTO vo) {
+		// TODO Auto-generated method stub
+		mp.detecton(vo);
+	}
+
+	@Override
+	public void detectoff(ServiceDTO vo) {
+		// TODO Auto-generated method stub
+		mp.detectoff(vo);
+	}
 
 }

@@ -12,7 +12,7 @@
 			<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 			<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/cctv?useUnicode=yes&amp;characterEncoding=UTF-8"></property>
 			<property name="username" value="khs4637"></property>
-			<property name="password" value="khs12341234"></property>
+			<property name="password" value="12341234"></property>
 		</bean>
 		
 		<!-- 히카리 컨피그 -->
