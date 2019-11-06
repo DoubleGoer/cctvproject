@@ -16,6 +16,32 @@ public class CaptureModule implements CaptureService{
 	@Autowired
 	CaptureMapper mp;
 	
+	@Override
+	public ArrayList<CaptureDTO> getList_Captureable(CaptureDTO ct) {
+		ArrayList<CaptureDTO> data;
+		data = mp.getList_Captureable(ct);
+		return data;
+	}
+	@Override
+	public ArrayList<CropDTO> getList_Crop(CropDTO ct) {
+		ArrayList<CropDTO> data;
+		data = mp.getList_Crop(ct);
+		return data;
+	}
+	@Override
+	public ArrayList<HeatMapDTO> getList_Heatmap(HeatMapDTO ct) {
+		ArrayList<HeatMapDTO> data;
+		data = mp.getList_Heatmap(ct);
+		return data;
+	}
+//	@Override
+//	public ArrayList<CaptureDTO> getcpatureAll(CaptureDTO ct) {
+//		ArrayList<CaptureDTO> data;
+//		data = mp.getList_Captureable(ct);
+//		return data;
+//	}
+	
+	
 	
 	@Override
 	public ArrayList<CaptureDTO> getcpature(CaptureDTO ct) {

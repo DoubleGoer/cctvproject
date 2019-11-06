@@ -50,12 +50,6 @@ public class ServiceModule implements Service {
 
 
 
-	@Override
-	public ArrayList<ServiceDTO> returnip(ServiceDTO vo) {
-		// TODO Auto-generated method stub
-		ArrayList<ServiceDTO> ck = mp.conck(vo);
-		return ck;
-	}
 
 	@Override
 	public ArrayList<SearchDataDTO> returnsu(SearchDataDTO sd) {
@@ -148,5 +142,21 @@ public class ServiceModule implements Service {
 		// TODO Auto-generated method stub
 		mp.detectoff(vo);
 	}
+	@Override
+	public ArrayList<ServiceDTO> returnip(ServiceDTO vo) {
+		// TODO Auto-generated method stub
+		ArrayList<ServiceDTO> ck = mp.conck(vo);
+		return ck;
+	}
+	
+	@Override
+	public ArrayList<ServiceDTO> returnip2(ServiceDTO vo) {
+		// TODO Auto-generated method stub
+		ArrayList<ServiceDTO> ck = mp.jin(vo);
+		return ck;
+	}
+	
+	
+	
 
 }

@@ -39,6 +39,8 @@ public interface Service {
 	
 	public ArrayList<ServiceDTO> returnip(ServiceDTO vo);
 	
+	public ArrayList<ServiceDTO> returnip2(ServiceDTO vo);
+	
 	public ArrayList<SearchDataDTO> returnsu(SearchDataDTO sd);
 	
 	public ArrayList<HourDTO> returndata(SearchDataDTO sd);
@@ -46,4 +48,11 @@ public interface Service {
 	public ArrayList<SearchDataDTO> returndaydata(SearchDataDTO sd);
 	
 	public ArrayList<DayDTO> returndaychart(SearchDataDTO sd);
+	
+	
+	
+	
+	
+	
+	
 }

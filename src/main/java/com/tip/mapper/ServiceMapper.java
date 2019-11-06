@@ -42,8 +42,11 @@ public interface ServiceMapper {
 	@Delete("Delete from customer where c_id=#{c_id}")
 	public void delcustom(ServiceDTO vo);
 	
+	
 	@Select("select * from service where c_id=#{c_id} and r_ip is not null")
 	public ArrayList<ServiceDTO> conck(ServiceDTO so);
+	
+	
 	
 	
 	@Select("select * from service where r_ip is null")
@@ -82,6 +85,14 @@ public interface ServiceMapper {
 	
 	@Select("select * from service,dcp where service.RC_NO = dcp.RC_NO and c_id=#{c_id} and rc_month=#{rc_month} and rc_year=#{rc_year}")
 	public ArrayList<DayDTO> chartDayData(SearchDataDTO sd);
+	
+	
+
+	@Select("select r_ip from service where rc_no=#{rc_no}")
+	public ArrayList<ServiceDTO> jin(ServiceDTO so);
+	
+
+	
 	
 	
 }
